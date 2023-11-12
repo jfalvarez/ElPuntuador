@@ -5,7 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.jfaf.elpuntuador.R
+import com.jfaf.elpuntuador.data.Player
 import com.jfaf.elpuntuador.ui.theme.ElPuntuadorTheme
 
 
@@ -17,7 +17,12 @@ fun ElPuntuadorApp() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            CircularImageView(imageRes = R.drawable.ic_launcher_foreground)
+            val players = listOf(
+                Player(1, "Rocío", 0),
+                Player(2, "Sara", 0),
+                Player(3, "José", 0),
+            )
+            ScoreScreen(players)
         }
     }
 }
