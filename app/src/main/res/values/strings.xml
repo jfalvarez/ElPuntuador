@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">El Puntuador</string>
+    <string name="app_name" translatable="false">El Puntuador</string>
+
+    <!--Main-->
+    <string name="main_score">"Puntos: %1$s</string>
+
+    <!--Modals-->
+    <string name="modal_body_title">Puntuación de %1$s</string>
+    <string name="modal_button_cancel">Cancelar</string>
+    <string name="modal_button_ok">Aceptar</string>
+    <string name="modal_label">Puntuación</string>
+
 </resources>
