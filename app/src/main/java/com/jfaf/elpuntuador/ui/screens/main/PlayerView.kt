@@ -1,5 +1,10 @@
-package com.jfaf.elpuntuador.ui
+package com.jfaf.elpuntuador.ui.screens.main
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,6 +33,7 @@ import coil.request.ImageRequest
 import com.jfaf.elpuntuador.R
 import com.jfaf.elpuntuador.data.Player
 
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun PlayerView(playerReceived: Player) {
     var score by rememberSaveable { mutableIntStateOf(playerReceived.score) }
@@ -58,12 +64,21 @@ fun PlayerView(playerReceived: Player) {
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                text = stringResource(R.string.main_score, score),
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onPrimary,
-                textAlign = TextAlign.Center
-            )
+            AnimatedContent(
+                targetState = score,
+                label = "",
+                transitionSpec = {
+                    slideInVertically { fullHeight -> fullHeight } togetherWith slideOutVertically { fullHeight -> -fullHeight }
+                }
+            ) {
+                Text(
+                    text = stringResource(R.string.main_score, it),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    textAlign = TextAlign.Center
+                )
+            }
+
             Spacer(modifier = Modifier.height(25.dp))
         }
     }

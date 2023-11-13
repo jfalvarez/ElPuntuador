@@ -1,4 +1,4 @@
-package com.jfaf.elpuntuador.ui
+package com.jfaf.elpuntuador.ui.screens.main
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
