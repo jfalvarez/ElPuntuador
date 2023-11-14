@@ -16,5 +16,10 @@
     <string name="modal_button_ok">Aceptar</string>
     <string name="modal_label">Puntuación</string>
 
+    <!--New Game-->
+    <string name="new_game_title">Nueva partida!</string>
+    <string name="new_game_name">Escribe tu nombre</string>
+    <string name="new_game_name_typed">Participante: %1$s</string>
+    <string name="new_game_fb">Empezar</string>
 
 </resources>

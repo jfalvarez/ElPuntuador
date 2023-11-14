@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.jfaf.elpuntuador.ui.screens.choice.ChoiceView
 import com.jfaf.elpuntuador.ui.screens.main.ElPuntuadorApp
+import com.jfaf.elpuntuador.ui.screens.newgame.NewGameView
 
 @Composable
 fun Navigation() {
@@ -19,8 +20,17 @@ fun Navigation() {
         composable(NavItem.Choice) {
             ChoiceView(
                 onUpClick = { navController.popBackStack() },
-                onNewGameClick = { navController.navigate(NavItem.Main.route) },
-                onLoadGameClick = { navController.navigate(NavItem.CreateGame.route) }
+                onNewGameClick = { navController.navigate(NavItem.CreateGame.route) },
+                onLoadGameClick = { navController.navigate(NavItem.SelectGame.route) }
+            )
+        }
+        composable(NavItem.CreateGame){
+            NewGameView(
+                onUpClick = { navController.popBackStack(NavItem.Choice.route, inclusive = false) },
+                onFBClicked = {
+                    navController.popBackStack(NavItem.Choice.route, inclusive = false)
+                    navController.navigate(NavItem.Main.route)
+                }
             )
         }
         composable(NavItem.Main) {
