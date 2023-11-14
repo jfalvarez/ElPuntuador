@@ -1,7 +1,6 @@
 package com.jfaf.elpuntuador.ui.screens.main
 
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
@@ -22,7 +21,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -33,14 +31,13 @@ import coil.request.ImageRequest
 import com.jfaf.elpuntuador.R
 import com.jfaf.elpuntuador.data.Player
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun PlayerView(playerReceived: Player) {
     var score by rememberSaveable { mutableIntStateOf(playerReceived.score) }
     var showDialog by remember { mutableStateOf(false) }
     ElevatedCard(
         shape = CardDefaults.elevatedShape,
-        colors = CardDefaults.cardColors(containerColor = Color.Blue),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondary),
         elevation = CardDefaults.elevatedCardElevation(4.dp),
         modifier = Modifier.clickable { showDialog = true },
     ) {
@@ -50,6 +47,7 @@ fun PlayerView(playerReceived: Player) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data("https://cataas.com/cat?width=300&height=300")
+                    .error(drawableResId = R.drawable.img_error)
 //                .data("https://loremflickr.com/300/300/cat")
                     .crossfade(1000)
                     .build(),

@@ -2,10 +2,12 @@
     <string name="app_name" translatable="false">El Puntuador</string>
 
     <!--Choice-->
+    <string name="choice_title">Elige una opción</string>
     <string name="choice_new_game_option">Crear partida nueva</string>
     <string name="choice_resume_game_option">Continuar partida</string>
 
     <!--Main-->
+    <string name="main_title">Puntuación</string>
     <string name="main_score">"Puntos: %1$s</string>
 
     <!--Modals-->

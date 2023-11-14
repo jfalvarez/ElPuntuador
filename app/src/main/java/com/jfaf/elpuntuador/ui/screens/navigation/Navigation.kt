@@ -18,8 +18,9 @@ fun Navigation() {
     ) {
         composable(NavItem.Choice) {
             ChoiceView(
-                { navController.navigate(NavItem.Main.route) },
-                {}
+                onUpClick = { navController.popBackStack() },
+                onNewGameClick = { navController.navigate(NavItem.Main.route) },
+                onLoadGameClick = { navController.navigate(NavItem.CreateGame.route) }
             )
         }
         composable(NavItem.Main) {
