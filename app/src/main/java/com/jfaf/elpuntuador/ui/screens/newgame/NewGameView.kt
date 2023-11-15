@@ -1,9 +1,11 @@
 package com.jfaf.elpuntuador.ui.screens.newgame
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.jfaf.elpuntuador.R
 import com.jfaf.elpuntuador.data.Player
 import com.jfaf.elpuntuador.ui.screens.shared.CommonTopBar
@@ -30,7 +33,7 @@ fun NewGameView(onUpClick: () -> Unit, onFBClicked: () -> Unit) {
 //        val list = mutableListOf<Player>()
         val list = remember { mutableStateListOf<Player>() }
 
-        LazyColumn(contentPadding = paddingValues, modifier = Modifier.fillMaxSize()) {
+        LazyColumn(contentPadding = paddingValues, modifier = Modifier.fillMaxSize().padding(16.dp)) {
             items(list.size) { position ->
                 Text(text = stringResource(R.string.new_game_name_typed, list[position].name))
             }
@@ -44,7 +47,7 @@ fun NewGameView(onUpClick: () -> Unit, onFBClicked: () -> Unit) {
                         name = ""
                     }),
                     singleLine = true,
-                    label = { Text(stringResource(R.string.new_game_name)) },
+                    label = { Text(stringResource(R.string.new_game_name), style = MaterialTheme.typography.bodyLarge) },
                 )
             }
         }

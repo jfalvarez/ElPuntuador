@@ -58,7 +58,7 @@ fun CommonTopBar(
                                     contentDescription = null
                                 )
                             },
-                            text = { Text(text = stringResource(R.string.new_game_fb)) }
+                            text = { Text(text = stringResource(R.string.new_game_fb), style = MaterialTheme.typography.bodyLarge) }
                         )
                     }
                 }
