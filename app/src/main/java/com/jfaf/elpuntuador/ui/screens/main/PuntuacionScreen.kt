@@ -7,13 +7,16 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.jfaf.elpuntuador.data.Player
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ScoreScreen(players: List<Player>) {
+fun ScoreScreen(viewModel: PlayerViewViewModel = koinViewModel()) {
+    val players by viewModel.state.collectAsState()
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()
@@ -21,8 +24,8 @@ fun ScoreScreen(players: List<Player>) {
             .padding(20.dp),
         verticalAlignment = Alignment.Top,
     ) {
-        items(players.size) {
-            PlayerView(players[it])
+        items(players.playerOnGame.size) {
+            PlayerView(players.playerOnGame[it],viewModel)
             Spacer(modifier = Modifier.width(12.dp))
         }
     }

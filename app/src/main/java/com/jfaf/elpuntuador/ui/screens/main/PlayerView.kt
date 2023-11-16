@@ -29,10 +29,11 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.jfaf.elpuntuador.R
-import com.jfaf.elpuntuador.data.Player
+import com.jfaf.elpuntuador.model.data.entities.Player
+import com.jfaf.elpuntuador.model.data.entities.PlayerOnGame
 
 @Composable
-fun PlayerView(playerReceived: Player) {
+fun PlayerView(playerReceived: PlayerOnGame, viewModel: PlayerViewViewModel) {
     var score by rememberSaveable { mutableIntStateOf(playerReceived.score) }
     var showDialog by remember { mutableStateOf(false) }
     ElevatedCard(
@@ -83,7 +84,10 @@ fun PlayerView(playerReceived: Player) {
     if (showDialog) {
         InputScoreDialog(
             onDismissRequest = { showDialog = false },
-            onScoreConfirmed = { score = it },
+            onScoreConfirmed = {
+                score = it
+                viewModel.updateScore( it, playerReceived.playerId)
+           },
             player = playerReceived
         )
     }

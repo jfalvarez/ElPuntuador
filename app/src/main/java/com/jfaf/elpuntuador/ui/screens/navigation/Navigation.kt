@@ -3,6 +3,7 @@ package com.jfaf.elpuntuador.ui.screens.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -27,13 +28,16 @@ fun Navigation() {
         composable(NavItem.CreateGame){
             NewGameView(
                 onUpClick = { navController.popBackStack(NavItem.Choice.route, inclusive = false) },
-                onFBClicked = {
+                onStartClicked = {
                     navController.popBackStack(NavItem.Choice.route, inclusive = false)
                     navController.navigate(NavItem.Main.route)
                 }
             )
         }
         composable(NavItem.Main) {
+            ElPuntuadorApp(onUpClick = { navController.popBackStack() })
+        }
+        composable(NavItem.SelectGame) {
             ElPuntuadorApp(onUpClick = { navController.popBackStack() })
         }
     }
@@ -46,4 +50,10 @@ private fun NavGraphBuilder.composable(
     composable(route = navItem.route, arguments = navItem.args) {
         content(it)
     }
+}
+
+private inline fun <reified T> NavBackStackEntry.findArg(key: String): T {
+    val value = arguments?.get(key)
+    requireNotNull(value)
+    return value as T
 }

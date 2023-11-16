@@ -1,4 +1,4 @@
-package com.jfaf.elpuntuador.data
+package com.jfaf.elpuntuador.model.data.entities
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -7,11 +7,13 @@ data class Player (
     val id: Int,
     val name: String,
     var score: Int,
+    var isSelected: Boolean = false
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         id = parcel.readInt(),
         name = parcel.readString()?:"",
-        score = parcel.readInt()
+        score = parcel.readInt(),
+        isSelected = parcel.readBoolean()
     ) {
     }
 
@@ -19,6 +21,7 @@ data class Player (
         parcel.writeInt(id)
         parcel.writeString(name)
         parcel.writeInt(score)
+        parcel.writeBoolean(isSelected)
     }
 
     override fun describeContents(): Int {
@@ -34,4 +37,6 @@ data class Player (
             return arrayOfNulls(size)
         }
     }
+
+    fun toEntity() = PlayerDaoEntity(id, name, "")
 }

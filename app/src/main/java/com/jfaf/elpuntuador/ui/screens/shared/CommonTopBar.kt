@@ -24,8 +24,6 @@ import com.jfaf.elpuntuador.ui.theme.ElPuntuadorTheme
 fun CommonTopBar(
     onUpClick: () -> Unit,
     title: String,
-    showFB: Boolean = false,
-    onFBClick: () -> Unit,
     content: @Composable (paddingValues: PaddingValues) -> Unit
 ) {
     ElPuntuadorTheme {
@@ -48,20 +46,7 @@ fun CommonTopBar(
                         )
                     )
                 },
-                floatingActionButton = {
-                    if (showFB) {
-                        ExtendedFloatingActionButton(
-                            onClick = { onFBClick() },
-                            icon = {
-                                Icon(
-                                    imageVector = Icons.Default.Done,
-                                    contentDescription = null
-                                )
-                            },
-                            text = { Text(text = stringResource(R.string.new_game_fb), style = MaterialTheme.typography.bodyLarge) }
-                        )
-                    }
-                }
+
             ) {
                 content(it)
             }

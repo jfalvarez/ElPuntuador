@@ -11,7 +11,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.jfaf.elpuntuador.R
-import com.jfaf.elpuntuador.data.Player
 import com.jfaf.elpuntuador.ui.screens.shared.CommonTopBar
 
 
@@ -19,8 +18,7 @@ import com.jfaf.elpuntuador.ui.screens.shared.CommonTopBar
 fun ElPuntuadorApp(onUpClick: () -> Unit) {
     CommonTopBar(
         onUpClick = onUpClick,
-        title = stringResource(id = R.string.main_title),
-        onFBClick = {}
+        title = stringResource(id = R.string.main_title)
     ) { paddingValues ->
         Box(
             contentAlignment = Alignment.TopCenter,
@@ -33,12 +31,7 @@ fun ElPuntuadorApp(onUpClick: () -> Unit) {
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-            val players = listOf(
-                Player(1, "Rocío", 0),
-                Player(2, "Sara", 0),
-                Player(3, "José", 0),
-            )
-            ScoreScreen(players)
+            ScoreScreen()
         }
     }
 }
