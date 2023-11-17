@@ -18,7 +18,9 @@ import com.jfaf.elpuntuador.ui.screens.shared.CommonTopBar
 fun ElPuntuadorApp(onUpClick: () -> Unit) {
     CommonTopBar(
         onUpClick = onUpClick,
-        title = stringResource(id = R.string.main_title)
+        title = stringResource(id = R.string.main_title),
+        showFB = false,
+        onFBClick = {}
     ) { paddingValues ->
         Box(
             contentAlignment = Alignment.TopCenter,

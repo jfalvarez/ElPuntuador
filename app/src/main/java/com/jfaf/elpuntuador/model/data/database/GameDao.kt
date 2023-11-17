@@ -30,7 +30,7 @@ interface GameDao {
     @Query("Update Score set score = :newScore where playerID = :playerID and gameID = :gameId")
     suspend fun updateScore(gameId: Int, playerID: Int, newScore: Int)
 
-    @Query("SELECT * FROM Players")
+    @Query("SELECT * FROM Players order by name asc")
     suspend fun getPlayers(): List<PlayerDaoEntity>
 
     @Query("SELECT * FROM game")
@@ -42,7 +42,7 @@ interface GameDao {
     @Query("SELECT * FROM Score where gameID = :gameId")
     suspend fun getScoresByGameId(gameId: Int): List<ScoreDaoEntity>
 
-    @Query("SELECT Players.id as playerId, Score.gameID as gameId, Players.name,Players.thumbnail, Score.score  FROM Score inner join Players on Score.playerID = Players.id where gameID = :gameID")
+    @Query("SELECT Players.id as playerId, Score.gameID as gameId, Players.name,Players.thumbnail, Score.score  FROM Score inner join Players on Score.playerID = Players.id where gameID = :gameID order by Players.name asc")
     suspend fun getPlayersByGameID(gameID: Int): List<PlayerOnGame>
 
 

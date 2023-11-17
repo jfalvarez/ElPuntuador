@@ -27,12 +27,17 @@ import org.koin.androidx.compose.koinViewModel
 fun NewGameView(
     onUpClick: () -> Unit,
     onStartClicked: (Int) -> Unit,
-    viewModel: NewGameViewModel = koinViewModel()
+    viewModel: NewGameViewModel = koinViewModel(),
 ) {
+    var showNewPlayerDialog by remember { mutableStateOf(false) }
     CommonTopBar(
         title = stringResource(id = R.string.new_game_title),
         onUpClick = onUpClick,
+        showFB = true,
+        onFBClick = { showNewPlayerDialog = true }
     ) { paddingValues ->
+
+
 
         val newGameState by viewModel.state.collectAsState()
 
@@ -70,11 +75,23 @@ fun NewGameView(
                             viewModel.createGame()
                         },
                     ) {
-                        Text(text = stringResource(id = R.string.new_game_fb))
+                        Text(text = stringResource(id = R.string.new_game_button_text))
                     }
                 }
             }
 
+        }
+
+        if(showNewPlayerDialog) {
+            InputNewPlayerDialog(
+                onDismissRequest = {
+                    showNewPlayerDialog = false
+                },
+                onOkClicked = {
+                    viewModel.insertPlayer(it)
+                    showNewPlayerDialog = false
+                }
+            )
         }
 
         if(newGameState.startedGameId != -1) {

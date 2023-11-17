@@ -15,11 +15,13 @@
     <string name="modal_button_cancel">Cancelar</string>
     <string name="modal_button_ok">Aceptar</string>
     <string name="modal_label">Puntuación</string>
+    <string name="modal_new_player_hint">¿Cómo te llamas?</string>
 
     <!--New Game-->
     <string name="new_game_title">Nueva partida!</string>
+    <string name="new_game_button_text">Comenzar!</string>
     <string name="new_game_name">Escribe tu nombre</string>
     <string name="new_game_name_typed">Participante: %1$s</string>
-    <string name="new_game_fb">Empezar</string>
+    <string name="new_game_fb">Añadir nuevo Nombre</string>
 
 </resources>

@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 data class Player (
     val id: Int,
-    val name: String,
+    var name: String,
     var score: Int,
     var isSelected: Boolean = false
 ): Parcelable {

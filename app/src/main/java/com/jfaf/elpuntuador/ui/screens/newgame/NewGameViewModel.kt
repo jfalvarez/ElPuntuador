@@ -24,8 +24,9 @@ class NewGameViewModel(
         }
     }
 
-    fun insertPlayer(player: Player) = viewModelScope.launch {
-        puntuadorUseCase.insertPlayer(player)
+    fun insertPlayer(name: String) = viewModelScope.launch {
+        puntuadorUseCase.insertPlayer(Player(0,name,0,false ))
+        _state.value = state.value.copy(players = puntuadorUseCase.getPlayers())
     }
 
     fun createGame() = viewModelScope.launch {

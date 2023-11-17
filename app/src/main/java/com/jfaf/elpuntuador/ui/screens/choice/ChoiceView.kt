@@ -29,6 +29,8 @@ fun ChoiceView(
     CommonTopBar(
         title = stringResource(id = R.string.choice_title),
         onUpClick = onUpClick,
+        showFB = false,
+        onFBClick = {}
     ) { paddingValues ->
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
